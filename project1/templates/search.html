@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="flex">
+        <span class="sidenav">
+        <div class="heightfull">
+            <h1>Here are 5 top rated books published in the last 5 years</h1>
+            <div>
+               <h2>2018</h2> 
+                <ul>
+                    {% for book in books2018 %}
+                    <li><a href="/{{ book[2] }}">{{ book[0] }}</a> from author {{ book[1] }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div>
+                <h2>2017</h2>
+                <ul>
+                    {% for book in books2017 %}
+                    <li><a href="/{{ book[2] }}">{{ book[0] }}</a> from author {{ book[1] }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div>
+                <h2>2016</h2>
+                <ul>
+                    {% for book in books2016 %}
+                    <li><a href="/{{ book[2] }}">{{ book[0] }}</a> from author {{ book[1] }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div>
+                <h2>2015</h2>
+                <ul>
+                    {% for book in books2015 %}
+                    <li><a href="/{{ book[2] }}">{{ book[0] }}</a> from author {{ book[1] }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div>
+                <h2>2014</h2>
+                <ul>
+                    {% for book in books2014 %}
+                    <li><a href="/{{ book[2] }}">{{ book[0] }}</a> from author {{ book[1] }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div>
+                <h2>alltime</h2>
+                <ul>
+                    {% for book in booksalltime %}
+                    <li><a href="/{{ book[2] }}">{{ book[0] }}</a> from author {{ book[1] }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>    
+    </span>
+    <span class="getcentered">
+        <div id="upper-margin">
+        <form class="form-inline" action="{{ url_for('search') }}" method="POST" >
+                <input class="form-control mr-md-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form> 
+        </div>  
+        <div>
+            <ul>
+            {% for book in books %}
+            <li><a href="/{{ book[2] }}">{{ book[0] }}</a> from author {{ book[1] }}</li>
+            {% else %}
+            <h3>{{ error }}</h3>
+            {% endfor %}
+            </ul> 
+        </div>     
+    </span>
+</div>
+{% endblock %}

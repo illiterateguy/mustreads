@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{ book[1] }}
+{% endblock %}
+
+{% block body %}
+<div class="alert alert-success alert-dismissible " role="alert">
+    <strong>volla!</strong> Your review is uploaded. thanks for your review  
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="bookpage">
+<h1 style="color:red ; margin-top: 10px;"> {{ book[1] }} </h1>
+<b>author :</b> {{ book[2] }}<br>
+<b>isbn number :</b> {{ book[0] }}<br>
+<b>publication year :</b> {{ book[3] }}<br><br>
+
+<h3 class="bookheading">REVIEWS</h3><br>
+<ol>
+    {% for review in reviews %}
+        <li>
+            <h5>reviewed by {{ review[2] }}</h5>
+            <p class="column">
+                <b>rating :</b> {{ review[0] }}<br>
+                {{ review[1] }}
+            </p>
+        </li>
+     {% else %}
+        <h5 class="column">sorry , no review as of yet. Be the first to review</h5>   
+    {% endfor %}
+</ol>
+
+<br>
+<br>
+
+<div>
+    <h3 class="bookheading">GOODREADS RATING OF BOOK</h3>
+    <b>No. of rating recieved :</b> {{ apirating[0] }} <br>
+    <b>Rating on scale of 5 :</b> {{ apirating[1] }}
+</div>
+
+{% endblock %}

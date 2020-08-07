@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{ book[1] }}
+{% endblock %}
+
+{% block body %}
+<div class="bookpage">
+<h1 style="color:red ; margin-top: 10px;"> {{ book[1] }} </h1>
+<b>author :</b> {{ book[2] }}<br>
+<b>isbn number :</b> {{ book[0] }}<br>
+<b>publication year :</b> {{ book[3] }}
+
+<h3 class="bookheading">REVIEWS</h3><br>
+<ol>
+    {% for review in reviews %}
+        <li>
+          <h5>reviewed by {{ reviews[2] }}</h5>
+          <p class="column">
+            <b>rating :</b> {{ review[0] }}<br>
+            {{ review[1] }}
+          </p>
+        </li>
+     {% else %}
+        <h5 class="column">sorry , no review as of yet. Be the first to review</h5>   
+    {% endfor %}
+</ol>
+
+<div>
+  <h3 class="bookheading">GOODREADS RATING OF BOOK</h3>
+  <b>No. of rating recieved :</b> {{ apirating[0] }} <br>
+  <b>Rating on scale of 5 :</b> {{ apirating[1] }}
+</div>
+
+<form action="/{{ book[0] }}" method="POST">
+    <h3 class="bookheading">REVIEW THE BOOK YOURSELF</h3>
+    <div class="form-group">
+      <label for="exampleFormControlSelect1">rate the book</label>
+      <select class="form-control" name="bookrating" id="exampleFormControlSelect1">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+    </div>
+    <div class="form-group" >
+      <label for="exampleFormControlTextarea1">your book review</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" name="bookreview" rows="3"></textarea>
+    </div>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Submit</button>
+</form>
+</div>
+{% endblock %}
